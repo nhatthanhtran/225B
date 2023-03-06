@@ -156,13 +156,20 @@ def f1(x, t): return np.array([-np.sin(x[1]), x[0]])
 def f(x, t): return np.array([-np.cos(x[1])*x[0], -np.sin(x[1])])
 
 a = 0
-b = 20
+b = 60
 
 initial1= np.array([0,2])
 h = [0.08]
 
 t = np.arange(start=a, stop=b, step=h[0])
 initial = explicit_euler_mod(f1, t[:4], h[0], initial1)
+
+# #use this to create a really good initial condtions
+# initial[:,0] = initial1
+# initial[:,1] = explicit_euler_mod(f1, np.arange(t[0],t[1]+h[0]/32,h[0]/32), h[0]/32, initial1)[:,-1]
+# initial[:,2] = explicit_euler_mod(f1, np.arange(t[0],t[2]+h[0]/64,h[0]/64), h[0]/64, initial1)[:,-1]
+# initial[:,3] = explicit_euler_mod(f1, np.arange(t[0],t[3]+h[0]/128,h[0]/128), h[0]/128, initial1)[:,-1]
+
 
 plot_type = ["phase plane", "energy"]
 
@@ -200,5 +207,5 @@ for method in lst_methods:
     fig.tight_layout()
     fig.suptitle(method["name"])
     fig.tight_layout()
-    plt.savefig("project2_prob1_" + method["fig_name"] + ".eps")
+    plt.savefig("project2_prob1_" + method["fig_name"] + "best.eps")
     plt.close

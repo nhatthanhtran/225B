@@ -75,7 +75,7 @@ def bdf(f, t, h, initial):
 
 def f(y,t): return y**2 - y**3 
 
-delta = 1e-2
+delta = 1e-4
 initial = np.array([delta])
 h = [0.01]
 a = 0
@@ -84,10 +84,7 @@ b = 2/delta
 
 plot_type = ["whole", "zoom"]
 
-lst_methods = [
-    {"name": "Explicit Euler",
-    "function": explicit_euler,
-    "fig_name": "explicit_euler"},    
+lst_methods = [   
     {"name": "Implicit Midpoint",
     "function": implicit_midpoint,
     "fig_name": "implicit_mid"},
